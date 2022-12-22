@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #000;
+    /*font-family: "Archivo", sans-serif;*/
+    font-family: 'Libre Baskerville', serif;
+}
+
+/* HEADER BEGIN */
+header {
+    background-color: rgba(165, 160, 160, 0.747);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header img {
+    width: 45px;
+    height: auto;
+    margin: 8px;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.navbar li {
+    list-style: none;
+    margin: 8px;
+    padding-right: 15px;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    color: #FFF;
+}
+
+/* HEADER END */
+
+/* MAIN BEGIN */
+
+main {
+    height: 100vh;
+    background-color: rgb(223, 194, 98);
+}
+
+/* MAIN END */
