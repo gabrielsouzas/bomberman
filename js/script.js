@@ -10,13 +10,23 @@ document.addEventListener('keydown', (event) => {
     
     /* Testa a tecla pressionada */
     if (keyCode == 'ArrowRight') {
-        bomberman.style.left = `${positionLeft + 50}px`
+        if ((positionLeft + 50) <= 550) {
+            bomberman.style.left = `${positionLeft + 50}px`
+        } 
     } else if (keyCode == 'ArrowLeft') {
-        bomberman.style.left = `${positionLeft - 50}px`
+        if ((positionLeft - 50) >= 0) {
+            bomberman.style.left = `${positionLeft - 50}px`
+        }
     } else if (keyCode == 'ArrowDown') {
-        bomberman.style.top = `${positionTop + 50}px`
+        if ((positionTop + 50) <= 550) {
+            bomberman.style.top = `${positionTop + 50}px`
+        }
     } else if (keyCode == 'ArrowUp') {
-        bomberman.style.top = `${positionTop - 50}px`
+        if ((positionTop - 50) >= 0) {
+            bomberman.style.top = `${positionTop - 50}px`
+        }
     }
+
+    
 
   }, false);
