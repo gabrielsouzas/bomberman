@@ -48,8 +48,36 @@ header img {
 /* MAIN BEGIN */
 
 main {
-    height: 100vh;
+    /* Calcula a altura do main com 100vh menos a altura da navbar, que é 61.91px */
+    height: calc(100vh - 61.91px);
     background-color: rgb(223, 194, 98);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+/* GAMEBOARD BEGIN */
+
+.gameboard {
+    width: 600px;
+    height: 600px;
+    background-color: #FFF;
+    position: relative;
+}
+
+/* BOMBERMAN BEGIN */
+
+.bomberman {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+    left: 0;
+    top: 0;
+}
+
+/* BOMBERMAN END */
+
+/* GAMEBOARD END */
 
 /* MAIN END */
