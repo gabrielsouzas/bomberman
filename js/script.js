@@ -27,6 +27,4 @@ document.addEventListener('keydown', (event) => {
         }
     }
 
-    
-
   }, false);

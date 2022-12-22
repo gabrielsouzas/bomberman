@@ -25,7 +25,7 @@ The following technologies/tools were used for the development:
 
 ## 🕹️ Playing
 
-Access the game through GitHub Pages at the link: [Bomberman](https://gabrielsouzas.github.io/bomberman/)
+Access the game through GitHub Pages at the link: [Bomberman](https://gabrielsouzas.github.io/bomberman/) (In development)
 
 ## 🤝 Contributors
 
