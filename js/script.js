@@ -14,7 +14,7 @@ document.addEventListener('keydown', (event) => {
             bomberman.style.left = `${positionLeft + 50}px`
         } 
     } else if (keyCode == 'ArrowLeft') {
-        if ((positionLeft - 50) >= 0) {
+        if ((positionLeft - 50) >= 48) {
             bomberman.style.left = `${positionLeft - 50}px`
         }
     } else if (keyCode == 'ArrowDown') {

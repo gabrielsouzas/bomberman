@@ -59,9 +59,10 @@ main {
 /* GAMEBOARD BEGIN */
 
 .gameboard {
-    width: 600px;
-    height: 600px;
-    background-color: #FFF;
+    width: 717px;
+    height: 543px;
+    /*background-color: #FFF;*/
+    background-image: url(../img/background.png);
     position: relative;
 }
 
@@ -82,10 +83,12 @@ main {
 
 .bomberman {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    background-color: #000;
-    left: 0;
+    background-image: url(../img/bomberman.png);
+    background-repeat: no-repeat;
+    /*background-color: #000;*/
+    width: 43px;
+    height: 71px;
+    left: 48px;
     top: 0;
 }
 
