@@ -62,7 +62,10 @@ main {
     width: 717px;
     height: 543px;
     /*background-color: #FFF;*/
-    background-image: url(../img/background.png);
+    background-image: url(../img/stage_01.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     position: relative;
 }
 
@@ -70,9 +73,11 @@ main {
 
 .breakable-wall {
     position: absolute;
-    width: 48px;
-    height: 48px;
-    background-image: url(../img/breakable-wall.png);
+    width: 43px;
+    height: 43px;
+    background-image: url(../img/breakable-wall_old.png);
+    background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
     left: 0;
     top: 0;
@@ -84,13 +89,15 @@ main {
 
 .bomberman {
     position: absolute;
-    background-image: url(../img/bomberman.png);
+    background-image: url(../img/bomberman_front.png);
+    background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
     /*background-color: #000;*/
     width: 43px;
     height: 71px;
-    left: 48px;
-    top: 0;
+    left: 84px;
+    top: 8px;
 }
 
 /* BOMBERMAN END */
