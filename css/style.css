@@ -85,6 +85,24 @@ main {
 
 /* WALL-STATIC END */
 
+/* BOMB BEGIN */
+
+.bomb {
+    position: absolute;
+    background-image: url(../img/bomb_01.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*background-color: #000;*/
+    width: 43px;
+    height: 43px;
+    left: 84px;
+    top: 8px;
+    z-index: 99;
+}
+
+/* BOMB END */
+
 /* BOMBERMAN BEGIN */
 
 .bomberman {
@@ -98,6 +116,7 @@ main {
     height: 71px;
     left: 84px;
     top: 8px;
+    z-index: 999;
 }
 
 /* BOMBERMAN END */

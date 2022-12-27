@@ -134,7 +134,7 @@ gameBoard.appendChild(breakableWall);
 breakableWall.style.left = '94px';
 breakableWall.style.top = '69px';*/
 
-//createBreakableWall(94,69)
+createBreakableWall(168,124)
 //createBreakableWall(46,117)
 
 function createBreakableWall(positionLeft, positionTop) {
@@ -147,15 +147,51 @@ function createBreakableWall(positionLeft, positionTop) {
     breakableWall.style.top = `${positionTop}px`;
 
     /* Alocação Matriz */
-    matrizGameBoard[((positionTop-initTop)/step)][((positionLeft-initLeft)/step)] = 2;
+    //console.log(`matrizGameBoard[${((positionTop-initTop)/step)}][${((positionLeft-initLeft)/step)}]`)
+    var topX = (((positionTop-initTop)/step)+1);
+    var leftY = (((positionLeft-initLeft)/step)+1);
+    matrizGameBoard[topX][leftY] = 2;
+
+    /* Criando um ID para a parede de acordo com sua posição na matriz */
+    breakableWall.id = `wall-${leftY}-${topX}`;
+
+    //console.log(matrizGameBoard)
+}
+
+function createBomb(positionLeft, positionTop) {
+    var bomb = document.createElement('div');
+    bomb.classList.add('bomb');
+
+    gameBoard.appendChild(bomb);
+
+    bomb.style.left = `${positionLeft}px`;
+    bomb.style.top = `${positionTop}px`;
+
+    /* Alocação Matriz */
+    //console.log(positionTop+2)
+    //console.log(`matrizGameBoard[${((((positionTop+2)-initTop)/step)+1)}][${(((positionLeft-initLeft)/step)+1)}]`)
+    matrizGameBoard[((((positionTop+2)-initTop)/step)+1)][(((positionLeft-initLeft)/step)+1)] = 3;
+
+    //console.log(matrizGameBoard)
 }
 
 dropBomb = () => {
-    console.log('bomba na tela')
+    var bombermanLeft = +window.getComputedStyle(bomberman).left.replace('px', '');
+    var bombermanTop = +window.getComputedStyle(bomberman).top.replace('px', '');
+    createBomb(bombermanLeft, bombermanTop+30);
 
+    var bombX = (((bombermanLeft-initLeft)/step)+1);
+    var bombY = ((((bombermanTop+32)-initTop)/step)+1);
+
+    console.log(bombX)
+    console.log(bombY)
     
     setTimeout(() => {
         console.log('bomba explode')
-        console.log('remove parede da tela')
+
+        if (matrizGameBoard[bombY][bombX+1] == 2) {
+            document.getElementById(`wall-${bombY}-${bombX+1}`).remove();
+        }
+        
     }, 3000);
 }
