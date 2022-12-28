@@ -1,5 +1,5 @@
-/*@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");*/
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
 
 * {
     margin: 0;
@@ -148,11 +148,12 @@ main {
   }*/
 
   .modal .content {
-    background-color: #D3D3D3;
-    margin: 45vh auto;
+    background-color: #000000;
+    margin: 40vh auto;
     padding: 20px;
+    border: 5px solid rgba(155, 153, 153, 0.884);
     border-radius: 5px;
-    width: 80%;
+    width: 50%;
 
     display: flex;
     flex-direction: column;
@@ -168,12 +169,26 @@ main {
 .modal h2{
     margin-top: 10px;
     text-align: center;
-    color: var(--text-color-big);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(185, 11, 11);
 }
 
 .modal button {
     margin-top: 18px;
     margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 30px;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(8, 134, 65, 0.842);
+}
+
+.modal button:hover {
+    color: rgba(8, 134, 65, 0.842);
+    background-color:  white;
 }
 
 /* MODAL END */
