@@ -11,6 +11,11 @@ const initTop = 40;
 const bombLimit = 1;
 var bombCount = 0;
 
+/* Variaveis modal */
+const modal = document.querySelector('.modal');
+const modalText = document.querySelector('.modal h2');
+const modalButton = document.querySelector('.modal button');
+
 /*const matrizGameBoard = [
     [0,1,0,1,0,1,0,1,0,1,1,1,0],
     [0,0,0,0,0,0,0,0,0,1,1,1,0],
@@ -141,8 +146,39 @@ gameBoard.appendChild(breakableWall);
 breakableWall.style.left = '94px';
 breakableWall.style.top = '69px';*/
 
+// Criar as paredes nas coordenadas
 createBreakableWall(168,124)
-//createBreakableWall(46,117)
+createBreakableWall(168,82)
+createBreakableWall(84,124)	
+createBreakableWall(126,124)
+createBreakableWall(126,208)	
+createBreakableWall(168,208)
+createBreakableWall(168,376)
+createBreakableWall(168,418)
+createBreakableWall(210,292)
+createBreakableWall(252,40)
+createBreakableWall(252,292)
+createBreakableWall(294,40)
+createBreakableWall(336,124)
+createBreakableWall(336,166)
+createBreakableWall(336,208)
+createBreakableWall(378,292)
+createBreakableWall(420,40)
+createBreakableWall(420,82)
+createBreakableWall(420,124)
+createBreakableWall(420,292)
+createBreakableWall(504,40)
+createBreakableWall(504,208)
+createBreakableWall(504,250)
+createBreakableWall(504,376)
+createBreakableWall(546,376)
+createBreakableWall(588,124)
+createBreakableWall(588,166)
+createBreakableWall(588,334)
+createBreakableWall(588,376)
+
+
+
 
 function createBreakableWall(positionLeft, positionTop) {
     var breakableWall = document.createElement('div');
@@ -160,7 +196,7 @@ function createBreakableWall(positionLeft, positionTop) {
     matrizGameBoard[topX][leftY] = 2;
 
     /* Criando um ID para a parede de acordo com sua posição na matriz */
-    breakableWall.id = `wall-${leftY}-${topX}`;
+    breakableWall.id = `wall-${topX}-${leftY}`;
 
     //console.log(matrizGameBoard)
 }
@@ -218,8 +254,8 @@ dropBomb = () => {
         var bombermanCurrentLocalTop = (((((+window.getComputedStyle(bomberman).top.replace('px', ''))+32)-initTop)/step)+1);
         /*console.log('['+((((+window.getComputedStyle(bomberman).left.replace('px', ''))-initLeft)/step)+1)+']['+(((((+window.getComputedStyle(bomberman).top.replace('px', ''))+32)-initTop)/step)+1)+']')*/
 
-        console.log(`[${bombX}][${bombY}]`)
-        console.log(`[${bombermanCurrentLocalLeft}][${bombermanCurrentLocalTop}]`)
+        //console.log(`[${bombX}][${bombY}]`)
+        //console.log(`[${bombermanCurrentLocalLeft}][${bombermanCurrentLocalTop}]`)
 
         // Testa as posições
         if ((bombermanCurrentLocalLeft == bombX && bombermanCurrentLocalTop == bombY) ||
@@ -250,25 +286,4 @@ dropBomb = () => {
 function restartGame() {
     modal.style.display = 'none';
     window.location.reload();
-}
-
-const modal = document.querySelector('.modal');
-const modalText = document.querySelector('.modal h2');
-const modalButton = document.querySelector('.modal button');
-var acertou = false;
-
-function clique(event) {
-    if (event.target.id == btnCorCorreta.id) {
-        acertou = true;
-        modalText.innerHTML = "Parabéns, você acertou!";
-        ler("Você acertou!");
-        modalButton.innerHTML = "Continuar";
-        modal.style.display = 'block';
-    } else {
-        acertou = false;
-        modalText.innerHTML = "Ah, essa não é a cor correta!";
-        ler("Tente novamente!");
-        modalButton.innerHTML = "Tentar novamente";
-        modal.style.display = 'block';
-    }
 }

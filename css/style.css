@@ -75,7 +75,8 @@ main {
     position: absolute;
     width: 43px;
     height: 43px;
-    background-image: url(../img/breakable-wall_old.png);
+    /*background-image: url(../img/breakable-wall_old.png);*/
+    background-image: url(../img/wall-tree.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
