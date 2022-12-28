@@ -4,6 +4,8 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/gabrielsouzas/bomberman?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/gabrielsouzas/bomberman?style=for-the-badge)
 
+<img src="img\proto\print_01.png" alt="Print 01" height="500">
+
 [comment]: <> (<img src="img\prints\Print_01.png" alt="Print 01" height="500"> <img src="img\prints\Print_02.png" alt="Print 02" height="500"> <img src="img\prints\Print_03.png" alt="Print 03" height="500">)
 
 
@@ -19,8 +21,12 @@ The following technologies/tools were used for the development:
 
 - [X] Basic structure of the game;
 - [X] Character movement on screen;
-- [ ] Game logic
-- [ ] Insertion of game images;
+- [X] Game logic
+- [X] Insertion of game images;
+- [ ] Animations;
+- [ ] Score;
+- [ ] More stages;
+- [ ] Clean Code;
 - [ ] Testing;
 
 ## 🕹️ Playing
