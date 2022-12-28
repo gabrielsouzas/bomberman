@@ -8,6 +8,9 @@ var positionY = 1;
 const initLeft = 84;
 const initTop = 40;
 
+const bombLimit = 1;
+var bombCount = 0;
+
 /*const matrizGameBoard = [
     [0,1,0,1,0,1,0,1,0,1,1,1,0],
     [0,0,0,0,0,0,0,0,0,1,1,1,0],
@@ -73,7 +76,11 @@ document.addEventListener('keydown', (event) => {
        //}
     } else if (keyCode == 'KeyX') {
         /* Deixar a bomba na tela e na matriz */
-        dropBomb();
+        if (bombCount == bombLimit) {
+            // Não pode mais soltar bomba
+        } else {
+            dropBomb();
+        }
     }
 
 }, false);
@@ -173,25 +180,46 @@ function createBomb(positionLeft, positionTop) {
     matrizGameBoard[((((positionTop+2)-initTop)/step)+1)][(((positionLeft-initLeft)/step)+1)] = 3;
 
     //console.log(matrizGameBoard)
+
+    return bomb;
 }
 
 dropBomb = () => {
     var bombermanLeft = +window.getComputedStyle(bomberman).left.replace('px', '');
     var bombermanTop = +window.getComputedStyle(bomberman).top.replace('px', '');
-    createBomb(bombermanLeft, bombermanTop+30);
+    var currentBomb = createBomb(bombermanLeft, bombermanTop+30);
+
+    bombCount++;
 
     var bombX = (((bombermanLeft-initLeft)/step)+1);
     var bombY = ((((bombermanTop+32)-initTop)/step)+1);
 
-    console.log(bombX)
-    console.log(bombY)
+    //console.log(bombX)
+    //console.log(bombY)
     
+    // Timer para a explosão da bomba
     setTimeout(() => {
-        console.log('bomba explode')
+        //console.log('bomba explode')
 
+        // Remove as paredes ao lado da bomba e seta o 0 na matriz
         if (matrizGameBoard[bombY][bombX+1] == 2) {
             document.getElementById(`wall-${bombY}-${bombX+1}`).remove();
+            matrizGameBoard[bombY][bombX+1] = 0;
+        } else if (matrizGameBoard[bombY][bombX-1] == 2) {
+            document.getElementById(`wall-${bombY}-${bombX-1}`).remove();
+            matrizGameBoard[bombY][bombX-1] = 0;
+        } else if (matrizGameBoard[bombY+1][bombX] == 2) {
+            document.getElementById(`wall-${bombY+1}-${bombX}`).remove();
+            matrizGameBoard[bombY+1][bombX] = 0;
+        } else if (matrizGameBoard[bombY-1][bombX] == 2) {
+            document.getElementById(`wall-${bombY-1}-${bombX}`).remove();
+            matrizGameBoard[bombY-1][bombX] = 0;
         }
+
+        // Remove a bomba da tela e da matriz
+        currentBomb.remove();
+        matrizGameBoard[bombY][bombX] = 0;
+        bombCount--;
         
-    }, 3000);
+    }, 3000); // 3 segundos para a bomba explodir
 }
