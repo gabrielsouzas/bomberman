@@ -193,9 +193,6 @@ dropBomb = () => {
 
     var bombX = (((bombermanLeft-initLeft)/step)+1);
     var bombY = ((((bombermanTop+32)-initTop)/step)+1);
-
-    //console.log(bombX)
-    //console.log(bombY)
     
     // Timer para a explosão da bomba
     setTimeout(() => {
@@ -216,10 +213,62 @@ dropBomb = () => {
             matrizGameBoard[bombY-1][bombX] = 0;
         }
 
+        // Testa se o bomberman foi atingido pela bomba
+        var bombermanCurrentLocalLeft = ((((+window.getComputedStyle(bomberman).left.replace('px', ''))-initLeft)/step)+1);
+        var bombermanCurrentLocalTop = (((((+window.getComputedStyle(bomberman).top.replace('px', ''))+32)-initTop)/step)+1);
+        /*console.log('['+((((+window.getComputedStyle(bomberman).left.replace('px', ''))-initLeft)/step)+1)+']['+(((((+window.getComputedStyle(bomberman).top.replace('px', ''))+32)-initTop)/step)+1)+']')*/
+
+        console.log(`[${bombX}][${bombY}]`)
+        console.log(`[${bombermanCurrentLocalLeft}][${bombermanCurrentLocalTop}]`)
+
+        // Testa as posições
+        if ((bombermanCurrentLocalLeft == bombX && bombermanCurrentLocalTop == bombY) ||
+            (bombermanCurrentLocalLeft == bombX-1 && bombermanCurrentLocalTop == bombY) ||
+            (bombermanCurrentLocalLeft == bombX+1 && bombermanCurrentLocalTop == bombY) ||
+            (bombermanCurrentLocalLeft == bombX && bombermanCurrentLocalTop == bombY-1) ||
+            (bombermanCurrentLocalLeft == bombX && bombermanCurrentLocalTop == bombY+1)) {
+            
+                // Animação morte bomberman
+
+                // Modal informando a morte e reinicio
+                modalText.innerHTML = "You Died!";
+                modalButton.innerHTML = "Try again.";
+                modal.style.display = 'block';
+
+        }
+
         // Remove a bomba da tela e da matriz
         currentBomb.remove();
         matrizGameBoard[bombY][bombX] = 0;
         bombCount--;
         
     }, 3000); // 3 segundos para a bomba explodir
+}
+
+
+// Clique no modal
+function restartGame() {
+    modal.style.display = 'none';
+    window.location.reload();
+}
+
+const modal = document.querySelector('.modal');
+const modalText = document.querySelector('.modal h2');
+const modalButton = document.querySelector('.modal button');
+var acertou = false;
+
+function clique(event) {
+    if (event.target.id == btnCorCorreta.id) {
+        acertou = true;
+        modalText.innerHTML = "Parabéns, você acertou!";
+        ler("Você acertou!");
+        modalButton.innerHTML = "Continuar";
+        modal.style.display = 'block';
+    } else {
+        acertou = false;
+        modalText.innerHTML = "Ah, essa não é a cor correta!";
+        ler("Tente novamente!");
+        modalButton.innerHTML = "Tentar novamente";
+        modal.style.display = 'block';
+    }
 }
