@@ -11,6 +11,8 @@ const initTop = 40;
 const bombLimit = 1;
 var bombCount = 0;
 
+const timeStep = 200;
+
 /* Variaveis modal */
 const modal = document.querySelector('.modal');
 const modalText = document.querySelector('.modal h2');
@@ -57,7 +59,13 @@ document.addEventListener('keydown', (event) => {
     if (keyCode == 'ArrowRight') {
         //if ((positionLeft + step) <= 624) {
             if (canWalkRight()) {
-                bomberman.style.left = `${positionLeft + step}px`
+                /*bomberman.classList.add('walk-right')
+                setTimeout(() => {
+                    bomberman.classList.remove('walk-right')
+                }, 500);*/
+                positionAnimation(positionLeft, 'right');
+                
+                
             }
         //} 
     } else if (keyCode == 'ArrowLeft') {
@@ -128,6 +136,37 @@ function canWalkUp() {
         return true;
     } else {
         return false;
+    }
+}
+
+function positionAnimation(position, side) {
+    if (side == 'right') {
+        setTimeout(() => {
+            bomberman.style.left = `${position + 7}px`
+            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_01.png)';
+        }, 0);
+        setTimeout(() => {
+            bomberman.style.left = `${position + 14}px`
+            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_02.png)';
+        }, 50);
+        setTimeout(() => {
+            bomberman.style.left = `${position + 21}px`
+            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_03.png)';
+        }, 200);
+        setTimeout(() => {
+            bomberman.style.left = `${position + 28}px`
+            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_04.png)';
+        }, 200);
+        setTimeout(() => {
+            bomberman.style.left = `${position + 35}px`
+            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_04.png)';
+        }, 200);
+        setTimeout(() => {
+            bomberman.style.left = `${position + 42}px`
+            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_front.png)';
+        }, 200);
+    } else {
+        
     }
 }
 

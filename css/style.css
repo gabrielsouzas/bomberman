@@ -108,7 +108,7 @@ main {
 
 .bomberman {
     position: absolute;
-    background-image: url(../img/bomberman_front.png);
+    background-image: url(../img/bomberman/bomberman_front.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -118,6 +118,33 @@ main {
     left: 84px;
     top: 8px;
     z-index: 999;
+}
+
+.walk-right {
+    animation: walkRight 300ms ease-in-out;
+}
+
+@keyframes walkRight{
+    0% {
+        left: calc(100% + 8px);
+        background-image: url(../img/bomberman/bomberman_right_01.png);
+    }
+    40% {
+        left: 100px;
+        background-image: url(../img/bomberman/bomberman_right_02.png);
+    }
+    50% {
+        left: 108px;
+        background-image: url(../img/bomberman/bomberman_right_03.png);
+    }
+    60% {
+        left: 117px;
+        background-image: url(../img/bomberman/bomberman_right_04.png);
+    }
+    100% {
+        left: 126px;
+        background-image: url(../img/bomberman/bomberman_front.png);
+    }
 }
 
 /* BOMBERMAN END */
