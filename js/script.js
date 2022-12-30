@@ -143,8 +143,8 @@ function positionAnimation(position, side) {
     if (side == 'right') {
         setTimeout(() => {
             bomberman.style.left = `${position + 7}px`
-            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_01.png)';
-        }, 0);
+            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_04.png)';
+        }, 50);/*
         setTimeout(() => {
             bomberman.style.left = `${position + 14}px`
             bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_02.png)';
@@ -160,11 +160,11 @@ function positionAnimation(position, side) {
         setTimeout(() => {
             bomberman.style.left = `${position + 35}px`
             bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_04.png)';
-        }, 200);
+        }, 200);*/
         setTimeout(() => {
             bomberman.style.left = `${position + 42}px`
             bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_front.png)';
-        }, 200);
+        }, 50);
     } else {
         
     }
