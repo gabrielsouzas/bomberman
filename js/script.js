@@ -63,8 +63,27 @@ document.addEventListener('keydown', (event) => {
                 setTimeout(() => {
                     bomberman.classList.remove('walk-right')
                 }, 500);*/
-                positionAnimation(positionLeft, 'right');
+                //positionAnimation(positionLeft, 'right');
+                /*
+                var bombermanX = (((positionLeft-initLeft)/step)+1);
+                var bombermanY = ((((positionTop+32)-initTop)/step)+1);
+
+                console.log(bombermanX)
+                console.log(bombermanY)
+
+                if (Number.isInteger(bombermanX) && Number.isInteger(bombermanY)) {
+                    if (canWalkRight()) {
+                        bomberman.style.left = `${positionLeft + (step/2)}px` 
+                    }
+                } else {
+                    bomberman.style.left = `${positionLeft + (step/2)}px`
+                }*/
+
                 
+                //move();
+                //bomberman.style.left = `${positionLeft + step}px`
+                positionAnimation(positionLeft, 'right');
+
                 
             }
         //} 
@@ -139,32 +158,41 @@ function canWalkUp() {
     }
 }
 
+move = () => {
+    bomberman.classList.add('walk-right')
+
+    // FUNÇÃO QUE RECEBE UMA FUNÇÃO ANONIMA E UM TEMPO
+    setTimeout(() => {
+        bomberman.classList.remove('walk-right')
+    }, 300);
+}
+
 function positionAnimation(position, side) {
     if (side == 'right') {
         setTimeout(() => {
             bomberman.style.left = `${position + 7}px`
-            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_04.png)';
-        }, 50);/*
+            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_01.png)';
+        }, 30);///*
         setTimeout(() => {
             bomberman.style.left = `${position + 14}px`
             bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_02.png)';
-        }, 50);
+        }, 60);///*
         setTimeout(() => {
             bomberman.style.left = `${position + 21}px`
             bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_03.png)';
-        }, 200);
+        }, 90);
         setTimeout(() => {
             bomberman.style.left = `${position + 28}px`
             bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_04.png)';
-        }, 200);
+        }, 120);
         setTimeout(() => {
             bomberman.style.left = `${position + 35}px`
             bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_04.png)';
-        }, 200);*/
+        }, 150);//*/
         setTimeout(() => {
             bomberman.style.left = `${position + 42}px`
             bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_front.png)';
-        }, 50);
+        }, 180);
     } else {
         
     }
