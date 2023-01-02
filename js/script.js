@@ -73,16 +73,25 @@ document.addEventListener('keydown', (event) => {
 
                 if (Number.isInteger(bombermanX) && Number.isInteger(bombermanY)) {
                     if (canWalkRight()) {
-                        bomberman.style.left = `${positionLeft + (step/2)}px` 
+                        //bomberman.style.left = `${positionLeft + (step/2)}px`
+                        positionAnimation(positionLeft, 'right'); 
                     }
                 } else {
-                    bomberman.style.left = `${positionLeft + (step/2)}px`
+                    //bomberman.style.left = `${positionLeft + (step/2)}px`
+                    positionAnimation(positionLeft, 'right');
                 }*/
 
                 
                 //move();
                 //bomberman.style.left = `${positionLeft + step}px`
-                positionAnimation(positionLeft, 'right');
+                //positionAnimation(positionLeft, 'right');
+
+                positionBomberman(30, positionLeft, 'right', '_01', 7);
+                positionBomberman(60, positionLeft, 'right', '_02', 14);
+                positionBomberman(90, positionLeft, 'right', '_03', 21);
+                positionBomberman(120, positionLeft, 'right', '_04', 28);
+                positionBomberman(150, positionLeft, 'right', '_04', 35);
+                positionBomberman(180, positionLeft, '', 'front', 42);
 
                 
             }
@@ -90,7 +99,13 @@ document.addEventListener('keydown', (event) => {
     } else if (keyCode == 'ArrowLeft') {
         //if ((positionLeft - step) >= 48) {
             if (canWalkLeft()) {
-                bomberman.style.left = `${positionLeft - step}px`
+                //bomberman.style.left = `${positionLeft - step}px`
+                positionBomberman(30, positionLeft, 'left', '_01', -7);
+                positionBomberman(60, positionLeft, 'left', '_02', -14);
+                positionBomberman(90, positionLeft, 'left', '_03', -21);
+                positionBomberman(120, positionLeft, 'left', '_04', -28);
+                positionBomberman(150, positionLeft, 'left', '_04', -35);
+                positionBomberman(180, positionLeft, '', 'front', -42);
             }
         //}
     } else if (keyCode == 'ArrowDown') {
@@ -171,32 +186,41 @@ function positionAnimation(position, side) {
     if (side == 'right') {
         setTimeout(() => {
             bomberman.style.left = `${position + 7}px`
-            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_01.png)';
+            bomberman.style.backgroundImage = `url(img/bomberman/bomberman_${side}_01.png)`;
         }, 30);///*
         setTimeout(() => {
             bomberman.style.left = `${position + 14}px`
-            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_02.png)';
+            bomberman.style.backgroundImage = `url(img/bomberman/bomberman_${side}_02.png)`;
         }, 60);///*
         setTimeout(() => {
             bomberman.style.left = `${position + 21}px`
-            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_03.png)';
+            bomberman.style.backgroundImage = `url(img/bomberman/bomberman_${side}_03.png)`;
         }, 90);
         setTimeout(() => {
             bomberman.style.left = `${position + 28}px`
-            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_04.png)';
+            bomberman.style.backgroundImage = `url(img/bomberman/bomberman_${side}_04.png)`;
         }, 120);
         setTimeout(() => {
             bomberman.style.left = `${position + 35}px`
-            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_right_04.png)';
+            bomberman.style.backgroundImage = `url(img/bomberman/bomberman_${side}_04.png)`;
         }, 150);//*/
         setTimeout(() => {
             bomberman.style.left = `${position + 42}px`
-            bomberman.style.backgroundImage = 'url(img/bomberman/bomberman_front.png)';
+            bomberman.style.backgroundImage = `url(img/bomberman/bomberman_front.png)`;
         }, 180);
     } else {
         
     }
 }
+
+function positionBomberman(time, position, side, nimg, pixel){
+    setTimeout(() => {
+        bomberman.style.left = `${position + pixel}px`
+        bomberman.style.backgroundImage = `url(img/bomberman/bomberman_${side}${nimg}.png)`;
+    }, time);
+} 
+    
+
 
 /* BLOCOS PARA DESTRUIR */
 
