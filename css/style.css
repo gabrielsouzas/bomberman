@@ -108,7 +108,7 @@ main {
 
 .bomberman {
     position: absolute;
-    background-image: url(../img/bomberman/bomberman_front.png);
+    background-image: url(../img/bomberman/bomberman_front_01.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -143,7 +143,7 @@ main {
     }
     100% {
         /*left: 126px;*/
-        background-image: url(../img/bomberman/bomberman_front.png);
+        background-image: url(../img/bomberman/bomberman_front_01.png);
     }
 }
 

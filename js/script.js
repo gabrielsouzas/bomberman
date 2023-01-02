@@ -86,12 +86,12 @@ document.addEventListener('keydown', (event) => {
                 //bomberman.style.left = `${positionLeft + step}px`
                 //positionAnimation(positionLeft, 'right');
 
-                positionBomberman(30, positionLeft, 'right', '_01', 7);
-                positionBomberman(60, positionLeft, 'right', '_02', 14);
-                positionBomberman(90, positionLeft, 'right', '_03', 21);
-                positionBomberman(120, positionLeft, 'right', '_04', 28);
-                positionBomberman(150, positionLeft, 'right', '_04', 35);
-                positionBomberman(180, positionLeft, '', 'front', 42);
+                positionBomberman(30, positionLeft, 'right', '01', 7, '');
+                positionBomberman(60, positionLeft, 'right', '02', 14, '');
+                positionBomberman(90, positionLeft, 'right', '03', 21, '');
+                positionBomberman(120, positionLeft, 'right', '04', 28, '');
+                positionBomberman(150, positionLeft, 'right', '04', 35, '');
+                positionBomberman(180, positionLeft, 'front', '01', 42, '');
 
                 
             }
@@ -100,25 +100,37 @@ document.addEventListener('keydown', (event) => {
         //if ((positionLeft - step) >= 48) {
             if (canWalkLeft()) {
                 //bomberman.style.left = `${positionLeft - step}px`
-                positionBomberman(30, positionLeft, 'left', '_01', -7);
-                positionBomberman(60, positionLeft, 'left', '_02', -14);
-                positionBomberman(90, positionLeft, 'left', '_03', -21);
-                positionBomberman(120, positionLeft, 'left', '_04', -28);
-                positionBomberman(150, positionLeft, 'left', '_04', -35);
-                positionBomberman(180, positionLeft, '', 'front', -42);
+                positionBomberman(30, positionLeft, 'left', '01', -7, '');
+                positionBomberman(60, positionLeft, 'left', '02', -14, '');
+                positionBomberman(90, positionLeft, 'left', '03', -21, '');
+                positionBomberman(120, positionLeft, 'left', '04', -28, '');
+                positionBomberman(150, positionLeft, 'left', '04', -35, '');
+                positionBomberman(180, positionLeft, 'front', '01', -42, '');
             }
         //}
     } else if (keyCode == 'ArrowDown') {
         //if ((positionTop + step) <= 432) {
             if (canWalkDown()) {
-                bomberman.style.top = `${positionTop + step}px`
+                //bomberman.style.top = `${positionTop + step}px`
+                positionBomberman(30, positionTop, 'front', '02', 7, 'top');
+                positionBomberman(60, positionTop, 'front', '03', 14, 'top');
+                positionBomberman(90, positionTop, 'front', '02', 21, 'top');
+                positionBomberman(120, positionTop, 'front', '03', 28, 'top');
+                positionBomberman(150, positionTop, 'front', '02', 35, 'top');
+                positionBomberman(180, positionTop, 'front', '01', 42, 'top');
                 
             }
         //}
     } else if (keyCode == 'ArrowUp') {
         //if ((positionTop - step) >= 0) {
             if (canWalkUp()) {
-                bomberman.style.top = `${positionTop - step}px`
+                //bomberman.style.top = `${positionTop - step}px`
+                positionBomberman(30, positionTop, 'back', '02', -7, 'top');
+                positionBomberman(60, positionTop, 'back', '03', -14, 'top');
+                positionBomberman(90, positionTop, 'back', '02', -21, 'top');
+                positionBomberman(120, positionTop, 'back', '03', -28, 'top');
+                positionBomberman(150, positionTop, 'back', '02', -35, 'top');
+                positionBomberman(180, positionTop, 'front', '01', -42, 'top');
             }
        //}
     } else if (keyCode == 'KeyX') {
@@ -213,11 +225,18 @@ function positionAnimation(position, side) {
     }
 }
 
-function positionBomberman(time, position, side, nimg, pixel){
-    setTimeout(() => {
-        bomberman.style.left = `${position + pixel}px`
-        bomberman.style.backgroundImage = `url(img/bomberman/bomberman_${side}${nimg}.png)`;
-    }, time);
+function positionBomberman(time, position, side, nimg, pixel, pos){
+    if (pos == 'top') {
+        setTimeout(() => {
+            bomberman.style.top = `${position + pixel}px`
+            bomberman.style.backgroundImage = `url(img/bomberman/bomberman_${side}_${nimg}.png)`;
+        }, time);
+    } else {
+        setTimeout(() => {
+            bomberman.style.left = `${position + pixel}px`
+            bomberman.style.backgroundImage = `url(img/bomberman/bomberman_${side}_${nimg}.png)`;
+        }, time);
+    }
 } 
     
 
