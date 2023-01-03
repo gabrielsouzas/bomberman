@@ -194,6 +194,14 @@ move = () => {
     }, 300);
 }
 
+function bombExpand(bomb) {
+    bomb.classList.add('bomb-expand')
+
+    setTimeout(() => {
+        bomb.classList.remove('bomb-expand')
+    }, 3000);
+}
+
 function positionAnimation(position, side) {
     if (side == 'right') {
         setTimeout(() => {
@@ -238,6 +246,13 @@ function positionBomberman(time, position, side, nimg, pixel, pos){
         }, time);
     }
 } 
+
+function bombAnimation(bomb, time, nimg){
+    setTimeout(() => {
+        //bomberman.style.top = `${position + pixel}px`
+        bomb.style.backgroundImage = `url(img/bomb/bomb_${nimg}.png)`;
+    }, time);
+}
     
 
 
@@ -339,6 +354,10 @@ dropBomb = () => {
 
     var bombX = (((bombermanLeft-initLeft)/step)+1);
     var bombY = ((((bombermanTop+32)-initTop)/step)+1);
+
+    // Animação da bomba
+    //bombAnimation(currentBomb, 50, '02');
+    bombExpand(currentBomb);
     
     // Timer para a explosão da bomba
     setTimeout(() => {

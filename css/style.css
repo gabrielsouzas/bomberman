@@ -90,7 +90,7 @@ main {
 
 .bomb {
     position: absolute;
-    background-image: url(../img/bomb_01.png);
+    background-image: url(../img/bomb/bomb_01.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -144,6 +144,31 @@ main {
     100% {
         /*left: 126px;*/
         background-image: url(../img/bomberman/bomberman_front_01.png);
+    }
+}
+
+.bomb-expand {
+    animation: bombExpand 3s;
+}
+
+@keyframes bombExpand{
+    0% {
+        background-image: url(../img/bomb/bomb_02.png);
+    }
+    20% {
+        background-image: url(../img/bomb/bomb_03.png);
+    }
+    40% {
+        background-image: url(../img/bomb/bomb_02.png);
+    }
+    60% {
+        background-image: url(../img/bomb/bomb_01.png);
+    }
+    80% {
+        background-image: url(../img/bomb/bomb_02.png);
+    }
+    100% {
+        background-image: url(../img/bomb/bomb_03.png);
     }
 }
 
