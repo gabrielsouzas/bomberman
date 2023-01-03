@@ -102,6 +102,18 @@ main {
     z-index: 99;
 }
 
+.explosion {
+    position: absolute;
+    background-image: url(../img/bomb/bomb_explosion.png);
+    background-position: -0px 0px;
+    background-repeat: no-repeat;
+    width: 43px;
+    height: 43px;
+    left: 168px;
+    top: 38px;
+    z-index: 999999;
+}
+
 /* BOMB END */
 
 /* BOMBERMAN BEGIN */
