@@ -104,14 +104,90 @@ main {
 
 .explosion {
     position: absolute;
-    background-image: url(../img/bomb/bomb_explosion.png);
-    background-position: -0px 0px;
-    background-repeat: no-repeat;
+    /*background-image: url(../img/bomb/bomb_explosion.png);
+    /*background-position: -0px 0px;
+    background-repeat: no-repeat;*/
     width: 43px;
     height: 43px;
-    left: 168px;
-    top: 38px;
     z-index: 999999;
+
+    overflow: hidden;
+}
+
+.explosion-center {
+    left: 168px;
+    top: 82px;
+}
+
+.explosion-right {
+    left: 208px; /* 206 + 2px */
+    top: 82px;
+}
+
+.explosion-left {
+    left: 128px; /* 126 + 2px */
+    top: 82px;
+}
+
+.explosion-up {
+    left: 168px;
+    top: 42px;
+}
+
+.explosion-down {
+    left: 168px;
+    top: 122px;
+}
+
+.explosion img {
+    position: relative;
+    top: 0px;
+    animation-name: bombExplosion;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.explosion-center img {
+    top: 0px;
+}
+
+.explosion-right img {
+    top: -43px;
+}
+
+.explosion-down img {
+    top: -86px;
+}
+
+.explosion-up img {
+    top: -129px;
+}
+
+.explosion-left img {
+    top: -172px;
+}
+
+/*.bomb-explosion-center {
+    animation-name: bombExplosionCenter;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    
+}*/
+
+@keyframes bombExplosion{
+    /*0% {
+        /*background-position: 0px 0px;
+    }*/
+    
+    0% { left: 0px; }
+    25% { left: 0px }
+    26% { left: -43px }
+    50% { left: -43px }
+    51% { left: -86px }
+    75% { left: -86px }
+    76% { left: -129px }
+    100% { left: -129px }
 }
 
 /* BOMB END */
@@ -183,6 +259,8 @@ main {
         background-image: url(../img/bomb/bomb_03.png);
     }
 }
+
+
 
 /* BOMBERMAN END */
 
