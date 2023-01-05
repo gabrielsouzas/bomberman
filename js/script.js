@@ -199,7 +199,161 @@ function bombExpand(bomb) {
 
     setTimeout(() => {
         bomb.classList.remove('bomb-expand')
+
+        bombExplode(bomb)
     }, 3000);
+}
+
+function bombExplode(bomb) {
+
+    if (canExplodeRight()) {
+
+        let explo = createExplosionElement(Number(bomb.style.left.replace('px', '')), Number(bomb.style.top.replace('px', '')), 'right')
+
+        explo.classList.add('explosion')
+
+        let img = document.createElement('img');
+        img.src = 'img/bomb/bomb_explosion.png';
+        
+        explo.appendChild(img);
+        img.classList.add('explosion-img');
+        img.classList.add('explosion-right-img');
+
+        setTimeout(() => {
+            explo.remove();
+        }, 2000);
+    }
+    
+    if (canExplodeLeft()) {
+        let explo = createExplosionElement(Number(bomb.style.left.replace('px', '')), Number(bomb.style.top.replace('px', '')), 'left')
+
+        explo.classList.add('explosion')
+
+        let img = document.createElement('img');
+        img.src = 'img/bomb/bomb_explosion.png';
+        
+        explo.appendChild(img);
+        img.classList.add('explosion-img');
+        img.classList.add('explosion-left-img');
+
+        setTimeout(() => {
+            explo.remove();
+        }, 2000);
+    }
+
+    if (canExplodeUp()) {
+        
+        let explo = createExplosionElement(Number(bomb.style.left.replace('px', '')), Number(bomb.style.top.replace('px', '')), 'up')
+
+        explo.classList.add('explosion')
+
+        let img = document.createElement('img');
+        img.src = 'img/bomb/bomb_explosion.png';
+        
+        explo.appendChild(img);
+        img.classList.add('explosion-img');
+        img.classList.add('explosion-up-img');
+
+        setTimeout(() => {
+            explo.remove();
+        }, 2000);
+    }
+
+    if (canExplodeDown()) {
+        
+        let explo = createExplosionElement(Number(bomb.style.left.replace('px', '')), Number(bomb.style.top.replace('px', '')), 'down')
+
+        explo.classList.add('explosion')
+
+        let img = document.createElement('img');
+        img.src = 'img/bomb/bomb_explosion.png';
+        
+        explo.appendChild(img);
+        img.classList.add('explosion-img');
+        img.classList.add('explosion-down-img');
+
+        setTimeout(() => {
+            explo.remove();
+        }, 2000);
+    }
+
+    let explo = createExplosionElement(Number(bomb.style.left.replace('px', '')), Number(bomb.style.top.replace('px', '')), 'center')
+
+    explo.classList.add('explosion')
+
+    let img = document.createElement('img');
+    img.src = 'img/bomb/bomb_explosion.png';
+    
+    explo.appendChild(img);
+    img.classList.add('explosion-img');
+    img.classList.add('explosion-center-img');
+
+    setTimeout(() => {
+        explo.remove();
+    }, 2000);
+}
+
+// Cria uma div na tela para colocar a animação da explosão
+function createExplosionElement(positionLeft, positionTop, side) {
+    var explosion = document.createElement('div');
+    explosion.classList.add('explosion');
+
+    gameBoard.appendChild(explosion);
+
+    if (side == 'right') {
+        explosion.style.left = `${positionLeft+39}px`;
+        explosion.style.top = `${positionTop}px`;
+    } else if (side == 'left') {
+        explosion.style.left = `${positionLeft-39}px`;
+        explosion.style.top = `${positionTop}px`;
+    } else if (side == 'up') {
+        explosion.style.left = `${positionLeft-1}px`;
+        explosion.style.top = `${positionTop-41}px`;
+    } else if (side == 'down') {
+        explosion.style.left = `${positionLeft-2}px`;
+        explosion.style.top = `${positionTop+39}px`;
+    } else {
+        explosion.style.left = `${positionLeft}px`;
+        explosion.style.top = `${positionTop}px`;
+    }
+
+    return explosion;
+}
+
+function canExplodeRight() {
+    if (matrizGameBoard[bombY][bombX+1] == 0 || 
+        matrizGameBoard[bombY][bombX+1] == 2) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function canExplodeLeft() {
+    if (matrizGameBoard[bombY][bombX-1] == 0 || 
+        matrizGameBoard[bombY][bombX-1] == 2) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function canExplodeDown() {
+    if (matrizGameBoard[bombY+1][bombX] == 0 || 
+        matrizGameBoard[bombY+1][bombX] == 2) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function canExplodeUp() {
+    if (matrizGameBoard[bombY-1][bombX] == 0 || 
+        matrizGameBoard[bombY-1][bombX] == 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function positionAnimation(position, side) {
@@ -302,9 +456,7 @@ createBreakableWall(588,166)
 createBreakableWall(588,334)
 createBreakableWall(588,376)
 
-
-
-
+// Função para criar as paredes que podem ser quebradas
 function createBreakableWall(positionLeft, positionTop) {
     var breakableWall = document.createElement('div');
     breakableWall.classList.add('breakable-wall');
@@ -345,6 +497,9 @@ function createBomb(positionLeft, positionTop) {
     return bomb;
 }
 
+var bombX;
+var bombY;
+
 dropBomb = () => {
     var bombermanLeft = +window.getComputedStyle(bomberman).left.replace('px', '');
     var bombermanTop = +window.getComputedStyle(bomberman).top.replace('px', '');
@@ -352,12 +507,14 @@ dropBomb = () => {
 
     bombCount++;
 
-    var bombX = (((bombermanLeft-initLeft)/step)+1);
-    var bombY = ((((bombermanTop+32)-initTop)/step)+1);
+    bombX = (((bombermanLeft-initLeft)/step)+1);
+    bombY = ((((bombermanTop+32)-initTop)/step)+1);
 
     // Animação da bomba
     //bombAnimation(currentBomb, 50, '02');
     bombExpand(currentBomb);
+
+    //bombExplode(currentBomb, bombY, bombX)
     
     // Timer para a explosão da bomba
     setTimeout(() => {

@@ -120,51 +120,51 @@ main {
 }
 
 .explosion-right {
-    left: 208px; /* 206 + 2px */
+    left: 208px; /* 206 + 2 */
     top: 82px;
 }
 
 .explosion-left {
-    left: 128px; /* 126 + 2px */
+    left: 128px; /* 126 + 2 */
     top: 82px;
 }
 
 .explosion-up {
-    left: 168px;
+    left: 167px; /* 168 - 1 */
     top: 42px;
 }
 
 .explosion-down {
-    left: 168px;
+    left: 166px; /* 168 - 2 */
     top: 122px;
 }
 
-.explosion img {
+.explosion-img {
     position: relative;
     top: 0px;
     animation-name: bombExplosion;
     animation-duration: 2s;
     animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    /*animation-iteration-count: infinite;*/
 }
 
-.explosion-center img {
+.explosion-center-img {
     top: 0px;
 }
 
-.explosion-right img {
+.explosion-right-img {
     top: -43px;
 }
 
-.explosion-down img {
-    top: -86px;
+.explosion-down-img {
+    top: -88px;
 }
 
-.explosion-up img {
-    top: -129px;
+.explosion-up-img {
+    top: -128px;
 }
 
-.explosion-left img {
+.explosion-left-img {
     top: -172px;
 }
 
