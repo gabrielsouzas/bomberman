@@ -143,7 +143,7 @@ main {
     position: relative;
     top: 0px;
     animation-name: bombExplosion;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-timing-function: linear;
     /*animation-iteration-count: infinite;*/
 }

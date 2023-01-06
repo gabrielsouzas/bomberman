@@ -13,6 +13,12 @@ var bombCount = 0;
 
 const timeStep = 200;
 
+// Constante para controle do tempo da explosão
+const timeExplosion = 1000;
+
+// Quantidade de paredes quebráveis, altere para criar mais paredes
+const numberOfBkWalls = 30;
+
 /* Variaveis modal */
 const modal = document.querySelector('.modal');
 const modalText = document.querySelector('.modal h2');
@@ -245,7 +251,7 @@ function bombExplode(bomb) {
 
         setTimeout(() => {
             explo.remove();
-        }, 2000);
+        }, timeExplosion);
     }
     
     if (canExplodeLeft()) {
@@ -262,7 +268,7 @@ function bombExplode(bomb) {
 
         setTimeout(() => {
             explo.remove();
-        }, 2000);
+        }, timeExplosion);
     }
 
     if (canExplodeUp()) {
@@ -280,7 +286,7 @@ function bombExplode(bomb) {
 
         setTimeout(() => {
             explo.remove();
-        }, 2000);
+        }, timeExplosion);
     }
 
     if (canExplodeDown()) {
@@ -298,7 +304,7 @@ function bombExplode(bomb) {
 
         setTimeout(() => {
             explo.remove();
-        }, 2000);
+        }, timeExplosion);
     }
 
     let explo = createExplosionElement(Number(bomb.style.left.replace('px', '')), Number(bomb.style.top.replace('px', '')), 'center')
@@ -314,7 +320,7 @@ function bombExplode(bomb) {
 
     setTimeout(() => {
         explo.remove();
-    }, 2000);
+    }, timeExplosion);
 }
 
 // Cria uma div na tela para colocar a animação da explosão
@@ -450,7 +456,7 @@ breakableWall.style.left = '94px';
 breakableWall.style.top = '69px';*/
 
 // Criar as paredes nas coordenadas
-createBreakableWall(168,124)
+/*createBreakableWall(168,124)
 createBreakableWall(168,82)
 createBreakableWall(84,124)	
 createBreakableWall(126,124)
@@ -478,7 +484,38 @@ createBreakableWall(546,376)
 createBreakableWall(588,124)
 createBreakableWall(588,166)
 createBreakableWall(588,334)
-createBreakableWall(588,376)
+createBreakableWall(588,376)*/
+
+const lin = [84,126,168,210,252,294,336,378,420,462,504,546,588];
+const col = [40,82,124,166,208,250,292,334,376,418,460];
+const breakableWallCantBe = ['84;40', '126;40', '84;82', '504;82', '126;376',	'210;82', '294;82', '336;376', '378;82', '462;82', '504;418', '546;82', '126;82', '210;166', '294;166', '336;40', '378;166', '462;166', '546;166', '126;166', '210;250', '294;250', '378;250', '462;250', '546;250', '126;250', '210;334', '294;334', '378;334', '462;334', '546;334', '126;418', '126;460', '294;292', '126;334', '210;418', '294;418', '378;418', '462;418', '546;418',];
+
+
+//console.log(numeros[numero]); // resultado aleatório
+
+var cont = 0;
+while (cont < numberOfBkWalls) {
+    var indexLin = Math.floor(Math.random() * lin.length);
+    var indexCol = Math.floor(Math.random() * col.length);
+    if (testBreakableWallcantBe(indexLin, indexCol)) {
+        createBreakableWall(lin[indexLin], col[indexCol]);
+        breakableWallCantBe.push(`${lin[indexLin]};${col[indexCol]}`)
+        cont++;
+    }
+}
+
+// Testar se não pode colocar uma parede quebravel no lugar solicitado pelo metodo createBreakableWall
+function testBreakableWallcantBe(line, column) {
+    var ret = true;
+    breakableWallCantBe.forEach(element => {
+        wLin = element.split(';')[0];
+        wCol = element.split(';')[1];
+        if (lin[line] == wLin && col[column] == wCol) {
+            ret = false;
+        }
+    });
+    return ret;
+}
 
 // Função para criar as paredes que podem ser quebradas
 function createBreakableWall(positionLeft, positionTop) {
