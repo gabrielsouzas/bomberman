@@ -17,7 +17,7 @@ const timeStep = 200;
 const timeExplosion = 1000;
 
 // Quantidade de paredes quebráveis, altere para criar mais paredes
-const numberOfBkWalls = 30;
+var numberOfBkWalls = 30;
 
 /* Variaveis modal */
 const modal = document.querySelector('.modal');
@@ -585,15 +585,19 @@ dropBomb = () => {
         if (matrizGameBoard[bombY][bombX+1] == 2) {
             document.getElementById(`wall-${bombY}-${bombX+1}`).remove();
             matrizGameBoard[bombY][bombX+1] = 0;
+            numberOfBkWalls--;
         } else if (matrizGameBoard[bombY][bombX-1] == 2) {
             document.getElementById(`wall-${bombY}-${bombX-1}`).remove();
             matrizGameBoard[bombY][bombX-1] = 0;
+            numberOfBkWalls--;
         } else if (matrizGameBoard[bombY+1][bombX] == 2) {
             document.getElementById(`wall-${bombY+1}-${bombX}`).remove();
             matrizGameBoard[bombY+1][bombX] = 0;
+            numberOfBkWalls--;
         } else if (matrizGameBoard[bombY-1][bombX] == 2) {
             document.getElementById(`wall-${bombY-1}-${bombX}`).remove();
             matrizGameBoard[bombY-1][bombX] = 0;
+            numberOfBkWalls--;
         }
 
         // Testa se o bomberman foi atingido pela bomba
@@ -611,13 +615,20 @@ dropBomb = () => {
             (bombermanCurrentLocalLeft == bombX && bombermanCurrentLocalTop == bombY-1) ||
             (bombermanCurrentLocalLeft == bombX && bombermanCurrentLocalTop == bombY+1)) {
             
-                // Animação morte bomberman
+            // Animação morte bomberman
 
+            // Modal informando a morte e reinicio
+            modalText.innerHTML = "You Died!";
+            modalButton.innerHTML = "Try again";
+            modal.style.display = 'block';
+
+        } else {
+            if (numberOfBkWalls == 0) {
                 // Modal informando a morte e reinicio
-                modalText.innerHTML = "You Died!";
-                modalButton.innerHTML = "Try again";
+                modalText.innerHTML = "You Win!";
+                modalButton.innerHTML = "Play again";
                 modal.style.display = 'block';
-
+            }
         }
 
         // Remove a bomba da tela e da matriz
