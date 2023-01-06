@@ -54,11 +54,23 @@ document.addEventListener('keydown', (event) => {
     var keyCode = event.code;
     var positionLeft = +window.getComputedStyle(bomberman).left.replace('px', '');
     var positionTop = +window.getComputedStyle(bomberman).top.replace('px', '');
+
+    
+    //console.log(((positionLeft-84) / 42) + 1);
+    /*console.log(positionTop);
+    console.log('*****************');
+
+    console.log(((positionLeft-84) % 42))
+    if (((positionLeft-84) % 42) == 0) {
+        console.log('Pode andar')
+    } else {
+        console.log('Não pode andar')
+    }*/
     
     /* Testa a tecla pressionada */
     if (keyCode == 'ArrowRight') {
         //if ((positionLeft + step) <= 624) {
-            if (canWalkRight()) {
+            if (canWalkRight(positionLeft)) {
                 /*bomberman.classList.add('walk-right')
                 setTimeout(() => {
                     bomberman.classList.remove('walk-right')
@@ -98,7 +110,7 @@ document.addEventListener('keydown', (event) => {
         //} 
     } else if (keyCode == 'ArrowLeft') {
         //if ((positionLeft - step) >= 48) {
-            if (canWalkLeft()) {
+            if (canWalkLeft(positionLeft)) {
                 //bomberman.style.left = `${positionLeft - step}px`
                 positionBomberman(30, positionLeft, 'left', '01', -7, '');
                 positionBomberman(60, positionLeft, 'left', '02', -14, '');
@@ -110,7 +122,7 @@ document.addEventListener('keydown', (event) => {
         //}
     } else if (keyCode == 'ArrowDown') {
         //if ((positionTop + step) <= 432) {
-            if (canWalkDown()) {
+            if (canWalkDown(positionTop)) {
                 //bomberman.style.top = `${positionTop + step}px`
                 positionBomberman(30, positionTop, 'front', '02', 7, 'top');
                 positionBomberman(60, positionTop, 'front', '03', 14, 'top');
@@ -123,7 +135,7 @@ document.addEventListener('keydown', (event) => {
         //}
     } else if (keyCode == 'ArrowUp') {
         //if ((positionTop - step) >= 0) {
-            if (canWalkUp()) {
+            if (canWalkUp(positionTop)) {
                 //bomberman.style.top = `${positionTop - step}px`
                 positionBomberman(30, positionTop, 'back', '02', -7, 'top');
                 positionBomberman(60, positionTop, 'back', '03', -14, 'top');
@@ -145,41 +157,53 @@ document.addEventListener('keydown', (event) => {
 }, false);
 
 
-function canWalkRight() {
-    //console.log(`matrizGameBoard[${positionY}][${positionX}]`)
+function canWalkRight(positionLeft) {
     if (matrizGameBoard[positionY][positionX+1] == 0) {
-        positionX++;
-        return true;
+        if ((((positionLeft-84) / 42)+2) == positionX+1) {
+            positionX++;
+            return true;
+        } else {
+            return false;
+        }
     } else {
         return false;
     }
 }
 
-function canWalkLeft() {
-    //console.log(`matrizGameBoard[${positionY}][${positionX}]`)
+function canWalkLeft(positionLeft) {
     if (matrizGameBoard[positionY][positionX-1] == 0) {
-        positionX--;
-        return true;
+        if ((((positionLeft-84) / 42)) == positionX-1) {
+            positionX--;
+            return true;
+        } else {
+            return false;
+        }
     } else {
         return false;
     }
 }
 
-function canWalkDown() {
-    //console.log(matrizGameBoard[positionY][positionX])
+function canWalkDown(positionTop) {
     if (matrizGameBoard[positionY+1][positionX] == 0) {
-        positionY++;
-        return true;
+        if ((((positionTop-8) / 42)+2) == positionY+1) {
+            positionY++;
+            return true;
+        } else {
+            return false;
+        }
     } else {
         return false;
     }
 }
 
-function canWalkUp() {
-    //console.log(matrizGameBoard[positionY][positionX])
+function canWalkUp(positionTop) {
     if (matrizGameBoard[positionY-1][positionX] == 0) {
-        positionY--;
-        return true;
+        if ((((positionTop-8) / 42)) == positionY-1) {
+            positionY--;
+            return true;
+        } else {
+            return false;
+        }
     } else {
         return false;
     }
