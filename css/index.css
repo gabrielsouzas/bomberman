@@ -1,0 +1,88 @@
+/* FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
+
+@font-face {
+    font-family: Bomberman;
+    src: url(../font/bomberman.TTF)
+}
+
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #000;
+    /*font-family: "Archivo", sans-serif;*/
+    /*font-family: 'Libre Baskerville', serif;*/
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-image: linear-gradient(to bottom, blue, rgb(79, 176, 241), blue);
+
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+h1 {
+    font-family: Bomberman, sans-serif;
+    font-size: 8rem;
+
+    /* Primeiro passo: definir um degradê como fundo */
+    background-image: linear-gradient(to bottom, rgb(224, 15, 15), rgb(238, 215, 8), rgb(255, 2, 2));
+    
+    /* Apagar do fundo tudo que não estiver imediatamente atrás de texto */
+    background-clip: text;
+    -webkit-background-clip: text; /* Alguns navegadores precisam do prefixo */
+
+    /* Apagar o texto, deixando apenas o fundo atrás dele */
+    -webkit-text-fill-color: transparent;
+
+    color: black;
+
+    /*line-height: 1.1;*/
+
+    -webkit-text-stroke: 0.0001px rgb(71, 41, 16);
+
+    padding-right: 8px;
+}
+
+.title-down {
+    text-align: end;
+    background-image: linear-gradient(to bottom, rgb(224, 203, 15), rgb(238, 215, 8), rgb(255, 2, 2));
+}
+
+ul {
+    list-style: none;
+    margin-top: 15px;
+    padding: 10px;
+    z-index: 2;
+}
+
+a {
+    color: #FFF;
+    font-family: "Archivo", sans-serif;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+main img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    z-index: 1;
+}

@@ -379,7 +379,7 @@ function canExplodeDown() {
 
 function canExplodeUp() {
     if (matrizGameBoard[bombY-1][bombX] == 0 || 
-        matrizGameBoard[bombY-1][bombX] == 0) {
+        matrizGameBoard[bombY-1][bombX] == 2) {
         return true;
     } else {
         return false;
@@ -586,15 +586,18 @@ dropBomb = () => {
             document.getElementById(`wall-${bombY}-${bombX+1}`).remove();
             matrizGameBoard[bombY][bombX+1] = 0;
             numberOfBkWalls--;
-        } else if (matrizGameBoard[bombY][bombX-1] == 2) {
+        }
+        if (matrizGameBoard[bombY][bombX-1] == 2) {
             document.getElementById(`wall-${bombY}-${bombX-1}`).remove();
             matrizGameBoard[bombY][bombX-1] = 0;
             numberOfBkWalls--;
-        } else if (matrizGameBoard[bombY+1][bombX] == 2) {
+        }
+        if (matrizGameBoard[bombY+1][bombX] == 2) {
             document.getElementById(`wall-${bombY+1}-${bombX}`).remove();
             matrizGameBoard[bombY+1][bombX] = 0;
             numberOfBkWalls--;
-        } else if (matrizGameBoard[bombY-1][bombX] == 2) {
+        }
+        if (matrizGameBoard[bombY-1][bombX] == 2) {
             document.getElementById(`wall-${bombY-1}-${bombX}`).remove();
             matrizGameBoard[bombY-1][bombX] = 0;
             numberOfBkWalls--;
