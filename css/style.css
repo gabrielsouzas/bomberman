@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
 
+@font-face {
+    font-family: Bomberman;
+    src: url(../font/bomberman.TTF)
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,15 +18,14 @@
 
 /* HEADER BEGIN */
 header {
-    background-color: rgba(165, 160, 160, 0.747);
+    background-image: linear-gradient(to bottom, rgba(0, 17, 255, 0.699), rgb(58, 130, 224), rgb(103, 168, 228));
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 header img {
-    width: 45px;
-    height: auto;
+    height: 45px;
     margin: 8px;
 }
 
@@ -39,8 +43,18 @@ header img {
     font-weight: bold;
 }
 
+.navbar a {
+    font-family: Bomberman, sans-serif;
+    color: rgb(17, 52, 167);
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+
+}
+
 .navbar a:hover {
-    color: #FFF;
+    color: #fff;
+    
+    /*-webkit-text-stroke: 0.3px rgb(17, 52, 167);*/
 }
 
 /* HEADER END */
@@ -50,7 +64,7 @@ header img {
 main {
     /* Calcula a altura do main com 100vh menos a altura da navbar, que é 61.91px */
     height: calc(100vh - 61.91px);
-    background-color: rgb(223, 194, 98);
+    background-color: #10101a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,6 +82,9 @@ main {
     background-repeat: no-repeat;
     /*position: relative;*/
     position: absolute;
+
+    border-radius: 10px;
+    border: 3px solid rgb(17, 52, 167);
 
 }
 

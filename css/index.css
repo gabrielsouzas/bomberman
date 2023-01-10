@@ -79,6 +79,10 @@ a {
     cursor: pointer;
 }
 
+a:hover {
+    color: #10101a;
+}
+
 main img {
     position: absolute;
     left: 0;
