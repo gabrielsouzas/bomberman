@@ -17,7 +17,7 @@ const timeStep = 200;
 const timeExplosion = 1000;
 
 // Quantidade de paredes quebráveis, altere para criar mais paredes
-var numberOfBkWalls = 5;
+var numberOfBkWalls = 32;
 
 /* Variaveis modal */
 const modal = document.querySelector('.modal');
@@ -679,7 +679,7 @@ function removeWalls(bY, bX) {
             wallRight.remove();
             matrizGameBoard[bY][bX+1] = 0;
             numberOfBkWalls--;
-        }, 1000);
+        }, timeExplosion);
 
     }
     if (matrizGameBoard[bY][bX-1] == 2) {
@@ -690,7 +690,7 @@ function removeWalls(bY, bX) {
             wallLeft.remove();
             matrizGameBoard[bY][bX-1] = 0;
             numberOfBkWalls--;
-        }, 1000);
+        }, timeExplosion);
     }
     if (matrizGameBoard[bY+1][bX] == 2) {
         let wallTop = document.getElementById(`wall-${bY+1}-${bX}`);
@@ -700,7 +700,7 @@ function removeWalls(bY, bX) {
             wallTop.remove();
             matrizGameBoard[bY+1][bX] = 0;
             numberOfBkWalls--;
-        }, 1000);
+        }, timeExplosion);
     }
     if (matrizGameBoard[bY-1][bX] == 2) {
         let wallBotton = document.getElementById(`wall-${bY-1}-${bX}`);
@@ -710,19 +710,9 @@ function removeWalls(bY, bX) {
             wallBotton.remove();
             matrizGameBoard[bY-1][bX] = 0;
             numberOfBkWalls--;
-        }, 1000);
+        }, timeExplosion);
     }
 }
-
-function wallExplosionAnimation(wall) {
-    console.log('entrou')
-    wall.classList.add('wall-explosion');
-    
-    setTimeout(() => {
-
-    }, 1000);
-}
-
 
 // Clique no modal
 function restartGame() {
