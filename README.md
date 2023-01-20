@@ -23,7 +23,8 @@ The following technologies/tools were used for the development:
 - [X] Character movement on screen;
 - [X] Game logic
 - [X] Insertion of game images;
-- [ ] Animations;
+- [X] Animations;
+- [ ] Enemies;
 - [ ] Score;
 - [ ] More stages;
 - [ ] Clean Code;
@@ -31,7 +32,7 @@ The following technologies/tools were used for the development:
 
 ## 🕹️ Playing
 
-Access the game through GitHub Pages at the link: [Bomberman](https://gabrielsouzas.github.io/bomberman/) (In development)
+Access the game through GitHub Pages at the link: [Bomberman](https://gabrielsouzas.github.io/bomberman/)
 
 ## 🤝 Contributors
 
