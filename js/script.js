@@ -17,7 +17,7 @@ const timeStep = 200;
 const timeExplosion = 1000;
 
 // Quantidade de paredes quebráveis, altere para criar mais paredes
-var numberOfBkWalls = 30;
+var numberOfBkWalls = 5;
 
 /* Variaveis modal */
 const modal = document.querySelector('.modal');
@@ -582,26 +582,49 @@ dropBomb = () => {
         //console.log('bomba explode')
 
         // Remove as paredes ao lado da bomba e seta o 0 na matriz
-        if (matrizGameBoard[bombY][bombX+1] == 2) {
-            document.getElementById(`wall-${bombY}-${bombX+1}`).remove();
-            matrizGameBoard[bombY][bombX+1] = 0;
-            numberOfBkWalls--;
+        removeWalls(bombY, bombX);
+        /*if (matrizGameBoard[bombY][bombX+1] == 2) {
+            
+            let wallRight = document.getElementById(`wall-${bombY}-${bombX+1}`);
+            wallRight.classList.add('wall-explosion');
+    
+            setTimeout(() => {
+                wallRight.remove();
+                matrizGameBoard[bombY][bombX+1] = 0;
+                numberOfBkWalls--;
+            }, 1000);
+
         }
         if (matrizGameBoard[bombY][bombX-1] == 2) {
-            document.getElementById(`wall-${bombY}-${bombX-1}`).remove();
-            matrizGameBoard[bombY][bombX-1] = 0;
-            numberOfBkWalls--;
+            let wallLeft = document.getElementById(`wall-${bombY}-${bombX-1}`);
+            wallLeft.classList.add('wall-explosion');
+
+            setTimeout(() => {
+                wallLeft.remove();
+                matrizGameBoard[bombY][bombX-1] = 0;
+                numberOfBkWalls--;
+            }, 1000);
         }
         if (matrizGameBoard[bombY+1][bombX] == 2) {
-            document.getElementById(`wall-${bombY+1}-${bombX}`).remove();
-            matrizGameBoard[bombY+1][bombX] = 0;
-            numberOfBkWalls--;
+            let wallTop = document.getElementById(`wall-${bombY+1}-${bombX}`);
+            wallTop.classList.add('wall-explosion');
+
+            setTimeout(() => {
+                wallTop.remove();
+                matrizGameBoard[bombY+1][bombX] = 0;
+                numberOfBkWalls--;
+            }, 1000);
         }
         if (matrizGameBoard[bombY-1][bombX] == 2) {
-            document.getElementById(`wall-${bombY-1}-${bombX}`).remove();
-            matrizGameBoard[bombY-1][bombX] = 0;
-            numberOfBkWalls--;
-        }
+            let wallBotton = document.getElementById(`wall-${bombY-1}-${bombX}`);
+            wallBotton.classList.add('wall-explosion');
+            
+            setTimeout(() => {
+                wallBotton.remove();
+                matrizGameBoard[bombY-1][bombX] = 0;
+                numberOfBkWalls--;
+            }, 1000);
+        }*/
 
         // Testa se o bomberman foi atingido pela bomba
         var bombermanCurrentLocalLeft = ((((+window.getComputedStyle(bomberman).left.replace('px', ''))-initLeft)/step)+1);
@@ -619,14 +642,21 @@ dropBomb = () => {
             (bombermanCurrentLocalLeft == bombX && bombermanCurrentLocalTop == bombY+1)) {
             
             // Animação morte bomberman
+            bomberman.classList.add('bomberman-death');
+            
+            // Tempo para a animação do bomberman concluir
+            setTimeout(() => {
+                
+                // Modal informando a morte e reinicio
+                modalText.innerHTML = "You Died!";
+                modalButton.innerHTML = "Try again";
+                modal.style.display = 'block';
+            }, 3000);
 
-            // Modal informando a morte e reinicio
-            modalText.innerHTML = "You Died!";
-            modalButton.innerHTML = "Try again";
-            modal.style.display = 'block';
+            
 
         } else {
-            if (numberOfBkWalls == 0) {
+            if (numberOfBkWalls == 1) {
                 // Modal informando a morte e reinicio
                 modalText.innerHTML = "You Win!";
                 modalButton.innerHTML = "Play again";
@@ -640,6 +670,60 @@ dropBomb = () => {
         bombCount--;
         
     }, 3000); // 3 segundos para a bomba explodir
+}
+
+function removeWalls(bY, bX) {
+    if (matrizGameBoard[bY][bX+1] == 2) {
+            
+        let wallRight = document.getElementById(`wall-${bY}-${bX+1}`);
+        wallRight.classList.add('wall-explosion');
+
+        setTimeout(() => {
+            wallRight.remove();
+            matrizGameBoard[bY][bX+1] = 0;
+            numberOfBkWalls--;
+        }, 1000);
+
+    }
+    if (matrizGameBoard[bY][bX-1] == 2) {
+        let wallLeft = document.getElementById(`wall-${bY}-${bX-1}`);
+        wallLeft.classList.add('wall-explosion');
+
+        setTimeout(() => {
+            wallLeft.remove();
+            matrizGameBoard[bY][bX-1] = 0;
+            numberOfBkWalls--;
+        }, 1000);
+    }
+    if (matrizGameBoard[bY+1][bX] == 2) {
+        let wallTop = document.getElementById(`wall-${bY+1}-${bX}`);
+        wallTop.classList.add('wall-explosion');
+
+        setTimeout(() => {
+            wallTop.remove();
+            matrizGameBoard[bY+1][bX] = 0;
+            numberOfBkWalls--;
+        }, 1000);
+    }
+    if (matrizGameBoard[bY-1][bX] == 2) {
+        let wallBotton = document.getElementById(`wall-${bY-1}-${bX}`);
+        wallBotton.classList.add('wall-explosion');
+        
+        setTimeout(() => {
+            wallBotton.remove();
+            matrizGameBoard[bY-1][bX] = 0;
+            numberOfBkWalls--;
+        }, 1000);
+    }
+}
+
+function wallExplosionAnimation(wall) {
+    console.log('entrou')
+    wall.classList.add('wall-explosion');
+    
+    setTimeout(() => {
+
+    }, 1000);
 }
 
 
