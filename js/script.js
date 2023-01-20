@@ -646,14 +646,11 @@ dropBomb = () => {
             
             // Tempo para a animação do bomberman concluir
             setTimeout(() => {
-                
                 // Modal informando a morte e reinicio
                 modalText.innerHTML = "You Died!";
                 modalButton.innerHTML = "Try again";
                 modal.style.display = 'block';
             }, 3000);
-
-            
 
         } else {
             if (numberOfBkWalls == 1) {
