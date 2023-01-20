@@ -21,7 +21,7 @@ The following technologies/tools were used for the development:
 
 - [X] Basic structure of the game;
 - [X] Character movement on screen;
-- [X] Game logic
+- [X] Game logic;
 - [X] Insertion of game images;
 - [X] Animations;
 - [ ] Enemies;
