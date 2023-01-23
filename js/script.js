@@ -20,7 +20,7 @@ const timeStep = 200;
 const timeExplosion = 1000;
 
 // Quantidade de paredes quebráveis, altere para criar mais paredes
-var numberOfBkWalls = 32;
+var numberOfBkWalls = 1;
 
 /* Variaveis modal */
 const modal = document.querySelector('.modal');
@@ -739,11 +739,21 @@ for (let step = 0; step < 10; step++) {
 }*/
 
 var going = 'right';
+var movesSide = 0;
 
 setInterval(() => {
     var positionEnemyLeft = +window.getComputedStyle(enemy).left.replace('px', '');
     var positionEnemyTop = +window.getComputedStyle(enemy).top.replace('px', '');
-    
+
+    if (movesSide >= 9) {
+        movesSide = 0;
+        if (going == 'right' || going == 'left') {
+            going = 'up';
+        } else {
+            going = 'right';
+        }
+    }
+
     if (going == 'right') {
         if (canWalkRightEnemy(positionEnemyLeft)) {
             positionEnemy(30, positionEnemyLeft, 'right', '01', 7, '');
@@ -754,6 +764,7 @@ setInterval(() => {
             positionEnemy(180, positionEnemyLeft, 'right', '01', 42, '');
         } else {
             going = 'left';
+            //movesSide++;
         }
     } else if (going == 'left') {
         if (canWalkLeftEnemy(positionEnemyLeft)) {
@@ -765,8 +776,34 @@ setInterval(() => {
             positionEnemy(180, positionEnemyLeft, 'right', '01', -42, '');
         } else {
             going = 'right';
+            //movesSide++;
+        }
+    } else if (going == 'up') {
+        if (canWalkUpEnemy(positionEnemyTop)) {
+            positionEnemy(30, positionEnemyTop, 'up', '01', -7, 'top');
+            positionEnemy(60, positionEnemyTop, 'up', '01', -14, 'top');
+            positionEnemy(90, positionEnemyTop, 'up', '01', -21, 'top');
+            positionEnemy(120, positionEnemyTop, 'up', '01', -28, 'top');
+            positionEnemy(150, positionEnemyTop, 'up', '01', -35, 'top');
+            positionEnemy(180, positionEnemyTop, 'up', '01', -42, 'top');
+        } else {
+            going = 'down';
+            //movesSide++;
+        }
+    } else if (going == 'down') {
+        if (canWalkDownEnemy(positionEnemyTop)) {
+            positionEnemy(30, positionEnemyTop, 'down', '01', 7, 'top');
+            positionEnemy(60, positionEnemyTop, 'down', '01', 14, 'top');
+            positionEnemy(90, positionEnemyTop, 'down', '01', 21, 'top');
+            positionEnemy(120, positionEnemyTop, 'down', '01', 28, 'top');
+            positionEnemy(150, positionEnemyTop, 'down', '01', 35, 'top');
+            positionEnemy(180, positionEnemyTop, 'down', '01', 42, 'top');
+        } else {
+            going = 'up';
+            //movesSide++;
         }
     }
+    movesSide++;
     /*
     if (canWalkRight(positionEnemyLeft) && going == 'right') {
         positionEnemy(30, positionEnemyLeft, 'right', '01', 7, '');
