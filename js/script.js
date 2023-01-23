@@ -5,8 +5,8 @@ const step = 42;
 var positionX = 1;
 var positionY = 1;
 
-var positionEnemyX = 1;
-var positionEnemyY = 1;
+var positionEnemyX = 7;
+var positionEnemyY = 5;
 
 const initLeft = 84;
 const initTop = 40;
@@ -20,7 +20,7 @@ const timeStep = 200;
 const timeExplosion = 1000;
 
 // Quantidade de paredes quebráveis, altere para criar mais paredes
-var numberOfBkWalls = 1;
+var numberOfBkWalls = 32;
 
 /* Variaveis modal */
 const modal = document.querySelector('.modal');
@@ -62,6 +62,9 @@ document.addEventListener('keydown', (event) => {
     } else {
         console.log('Não pode andar')
     }*/
+
+    
+    /*console.log(`Bomberman - Left: ${+window.getComputedStyle(bomberman).left.replace('px', '')} || Top: ${+window.getComputedStyle(bomberman).top.replace('px', '')} `);*/
     
     /* Testa a tecla pressionada */
     if (keyCode == 'ArrowRight') {
@@ -225,6 +228,8 @@ function bombExpand(bomb) {
 }
 
 function bombExplode(bomb) {
+
+    testBombKillEnemy(bomb);
 
     if (canExplodeRight()) {
 
@@ -478,7 +483,7 @@ createBreakableWall(588,376)*/
 
 const lin = [84,126,168,210,252,294,336,378,420,462,504,546,588];
 const col = [40,82,124,166,208,250,292,334,376,418,460];
-const breakableWallCantBe = ['84;40', '126;40', '84;82', '504;82', '126;376',	'210;82', '294;82', '336;376', '378;82', '462;82', '504;418', '546;82', '126;82', '210;166', '294;166', '336;40', '378;166', '462;166', '546;166', '126;166', '210;250', '294;250', '378;250', '462;250', '546;250', '126;250', '210;334', '294;334', '378;334', '462;334', '546;334', '126;418', '126;460', '294;292', '126;334', '210;418', '294;418', '378;418', '462;418', '546;418',];
+const breakableWallCantBe = ['84;40', '126;40', '84;82', '504;82', '126;376',	'210;82', '294;82', '336;376', '378;82', '462;82', '504;418', '546;82', '126;82', '210;166', '294;166', '336;40', '378;166', '462;166', '546;166', '126;166', '210;250', '294;250', '378;250', '462;250', '546;250', '126;250', '210;334', '294;334', '378;334', '462;334', '546;334', '126;418', '126;460', '294;292', '126;334', '210;418', '294;418', '378;418', '462;418', '546;418', '336;176',];
 
 
 //console.log(numeros[numero]); // resultado aleatório
@@ -740,10 +745,27 @@ for (let step = 0; step < 10; step++) {
 
 var going = 'right';
 var movesSide = 0;
-
+///*
 setInterval(() => {
     var positionEnemyLeft = +window.getComputedStyle(enemy).left.replace('px', '');
     var positionEnemyTop = +window.getComputedStyle(enemy).top.replace('px', '');
+
+    var positionBombermanLeft = +window.getComputedStyle(bomberman).left.replace('px', '');
+    var positionBombermanTop = +window.getComputedStyle(bomberman).top.replace('px', '');
+
+    if (positionEnemyLeft == positionBombermanLeft && 
+        positionEnemyTop == positionBombermanTop) {
+        // Animação morte bomberman
+        bomberman.classList.add('bomberman-death');
+            
+        // Tempo para a animação do bomberman concluir
+        setTimeout(() => {
+            // Modal informando a morte e reinicio
+            modalText.innerHTML = "You Died!";
+            modalButton.innerHTML = "Try again";
+            modal.style.display = 'block';
+        }, 3000);
+    }
 
     if (movesSide >= 9) {
         movesSide = 0;
@@ -804,30 +826,8 @@ setInterval(() => {
         }
     }
     movesSide++;
-    /*
-    if (canWalkRight(positionEnemyLeft) && going == 'right') {
-        positionEnemy(30, positionEnemyLeft, 'right', '01', 7, '');
-        positionEnemy(60, positionEnemyLeft, 'right', '01', 14, '');
-        positionEnemy(90, positionEnemyLeft, 'right', '01', 21, '');
-        positionEnemy(120, positionEnemyLeft, 'right', '01', 28, '');
-        positionEnemy(150, positionEnemyLeft, 'right', '01', 35, '');
-        positionEnemy(180, positionEnemyLeft, 'right', '01', 42, '');
-    } else {
-        going = 'left';
-        if (canWalkLeft(positionEnemyLeft) && going == 'left') {
-            positionEnemy(30, positionEnemyLeft, 'right', '01', -7, '');
-            positionEnemy(60, positionEnemyLeft, 'right', '01', -14, '');
-            positionEnemy(90, positionEnemyLeft, 'right', '01', -21, '');
-            positionEnemy(120, positionEnemyLeft, 'right', '01', -28, '');
-            positionEnemy(150, positionEnemyLeft, 'right', '01', -35, '');
-            positionEnemy(180, positionEnemyLeft, 'right', '01', -42, '');
-            
-        } else {
-            going = 'right';
-        }
-    }*/ 
 }, 500);
-
+//*/
 function canWalkRightEnemy(positionLeft) {
     if (matrizGameBoard[positionEnemyY][positionEnemyX+1] == 0) {
         if ((((positionLeft-84) / 42)+2) == positionEnemyX+1) {
@@ -892,4 +892,26 @@ function positionEnemy(time, position, side, nimg, pixel, pos){
             enemy.style.backgroundImage = `url(img/enemies/enemy_${side}_${nimg}.png)`;
         }, time);
     }
+}
+
+// Função para testar se a explosão da bomba atingiu um inimigo
+function testBombKillEnemy(bombScreen) {
+    /*console.log(`Bomb - Left: ${+window.getComputedStyle(bombScreen).left.replace('px', '')} || Top: ${+window.getComputedStyle(bombScreen).top.replace('px', '')} `);
+
+    console.log(`Enemy - Left: ${+window.getComputedStyle(enemy).left.replace('px', '')} || Top: ${+window.getComputedStyle(enemy).top.replace('px', '')} `);*/
+
+    var bmbL = Number(+window.getComputedStyle(bombScreen).left.replace('px', '')) ;
+    var bmbT = Number(+window.getComputedStyle(bombScreen).top.replace('px', ''));
+
+    var enmL = Number(+window.getComputedStyle(enemy).left.replace('px', ''));
+    var enmT = Number(+window.getComputedStyle(enemy).top.replace('px', ''));
+
+    console.log(`Bomb - Left: ${bmbL+42} || Top: ${bmbT-30} `);
+    console.log(`Enemy - Left: ${enmL} || Top: ${enmT} `);
+
+    if ((bmbL+42 == enmL) && (bmbT-30 == enmT)) {
+        console.log('Enemy Died!')
+    }
+    
+
 }

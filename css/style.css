@@ -337,14 +337,14 @@ main {
 
 .enemy {
     position: absolute;
-    background-image: url(../img/enemies/enemy_right_01.png);
+    background-image: url(../img/enemies/enemy_down_01.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     width: 43px;
     height: 71px;
-    left: 84px;
-    top: 8px;
+    left: 336px;
+    top: 176px;
     z-index: 999;
 }
 
