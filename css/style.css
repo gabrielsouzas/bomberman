@@ -333,6 +333,23 @@ main {
 
 /* BOMBERMAN END */
 
+/* ENEMIES BEGIN */
+
+.enemy {
+    position: absolute;
+    background-image: url(../img/enemies/enemy_right_01.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 43px;
+    height: 71px;
+    left: 84px;
+    top: 8px;
+    z-index: 999;
+}
+
+/* ENEMIES END */
+
 /* GAMEBOARD END */
 
 /* MODAL BEGIN */

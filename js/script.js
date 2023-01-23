@@ -5,6 +5,9 @@ const step = 42;
 var positionX = 1;
 var positionY = 1;
 
+var positionEnemyX = 1;
+var positionEnemyY = 1;
+
 const initLeft = 84;
 const initTop = 40;
 
@@ -23,19 +26,6 @@ var numberOfBkWalls = 32;
 const modal = document.querySelector('.modal');
 const modalText = document.querySelector('.modal h2');
 const modalButton = document.querySelector('.modal button');
-
-/*const matrizGameBoard = [
-    [0,1,0,1,0,1,0,1,0,1,1,1,0],
-    [0,0,0,0,0,0,0,0,0,1,1,1,0],
-    [0,1,0,1,0,1,0,1,0,1,0,1,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [1,1,0,1,1,1,1,1,1,1,0,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,0,1,0,1,0,1,0,1,0,1,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,0,1,0,1,0,1,0,1,0,1,1],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0],
-];*/
 
 // 13X15
 const matrizGameBoard = [
@@ -718,4 +708,151 @@ function removeWalls(bY, bX) {
 function restartGame() {
     modal.style.display = 'none';
     window.location.reload();
+}
+
+const enemy = document.querySelector('.enemy');
+
+/*
+while (true) {
+    var positionEnemyLeft = +window.getComputedStyle(enemy).left.replace('px', '');
+    var positionEnemyTop = +window.getComputedStyle(enemy).top.replace('px', '');
+
+    console.log(positionEnemyLeft)
+}*/
+
+/*
+for (let step = 0; step < 10; step++) {
+    var positionEnemyLeft = +window.getComputedStyle(enemy).left.replace('px', '');
+    var positionEnemyTop = +window.getComputedStyle(enemy).top.replace('px', '');
+
+    if (canWalkRight(positionEnemyLeft)) {
+        positionEnemy(30, positionEnemyLeft, 'right', '01', 7, '');
+        positionEnemy(60, positionEnemyLeft, 'right', '01', 14, '');
+        positionEnemy(90, positionEnemyLeft, 'right', '01', 21, '');
+        positionEnemy(120, positionEnemyLeft, 'right', '01', 28, '');
+        positionEnemy(150, positionEnemyLeft, 'right', '01', 35, '');
+        positionEnemy(180, positionEnemyLeft, 'right', '01', 42, '');
+    }
+
+    console.log(step)
+    
+}*/
+
+var going = 'right';
+
+setInterval(() => {
+    var positionEnemyLeft = +window.getComputedStyle(enemy).left.replace('px', '');
+    var positionEnemyTop = +window.getComputedStyle(enemy).top.replace('px', '');
+    
+    if (going == 'right') {
+        if (canWalkRightEnemy(positionEnemyLeft)) {
+            positionEnemy(30, positionEnemyLeft, 'right', '01', 7, '');
+            positionEnemy(60, positionEnemyLeft, 'right', '01', 14, '');
+            positionEnemy(90, positionEnemyLeft, 'right', '01', 21, '');
+            positionEnemy(120, positionEnemyLeft, 'right', '01', 28, '');
+            positionEnemy(150, positionEnemyLeft, 'right', '01', 35, '');
+            positionEnemy(180, positionEnemyLeft, 'right', '01', 42, '');
+        } else {
+            going = 'left';
+        }
+    } else if (going == 'left') {
+        if (canWalkLeftEnemy(positionEnemyLeft)) {
+            positionEnemy(30, positionEnemyLeft, 'right', '01', -7, '');
+            positionEnemy(60, positionEnemyLeft, 'right', '01', -14, '');
+            positionEnemy(90, positionEnemyLeft, 'right', '01', -21, '');
+            positionEnemy(120, positionEnemyLeft, 'right', '01', -28, '');
+            positionEnemy(150, positionEnemyLeft, 'right', '01', -35, '');
+            positionEnemy(180, positionEnemyLeft, 'right', '01', -42, '');
+        } else {
+            going = 'right';
+        }
+    }
+    /*
+    if (canWalkRight(positionEnemyLeft) && going == 'right') {
+        positionEnemy(30, positionEnemyLeft, 'right', '01', 7, '');
+        positionEnemy(60, positionEnemyLeft, 'right', '01', 14, '');
+        positionEnemy(90, positionEnemyLeft, 'right', '01', 21, '');
+        positionEnemy(120, positionEnemyLeft, 'right', '01', 28, '');
+        positionEnemy(150, positionEnemyLeft, 'right', '01', 35, '');
+        positionEnemy(180, positionEnemyLeft, 'right', '01', 42, '');
+    } else {
+        going = 'left';
+        if (canWalkLeft(positionEnemyLeft) && going == 'left') {
+            positionEnemy(30, positionEnemyLeft, 'right', '01', -7, '');
+            positionEnemy(60, positionEnemyLeft, 'right', '01', -14, '');
+            positionEnemy(90, positionEnemyLeft, 'right', '01', -21, '');
+            positionEnemy(120, positionEnemyLeft, 'right', '01', -28, '');
+            positionEnemy(150, positionEnemyLeft, 'right', '01', -35, '');
+            positionEnemy(180, positionEnemyLeft, 'right', '01', -42, '');
+            
+        } else {
+            going = 'right';
+        }
+    }*/ 
+}, 500);
+
+function canWalkRightEnemy(positionLeft) {
+    if (matrizGameBoard[positionEnemyY][positionEnemyX+1] == 0) {
+        if ((((positionLeft-84) / 42)+2) == positionEnemyX+1) {
+            positionEnemyX++;
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+function canWalkLeftEnemy(positionLeft) {
+    if (matrizGameBoard[positionEnemyY][positionEnemyX-1] == 0) {
+        if ((((positionLeft-84) / 42)) == positionEnemyX-1) {
+            positionEnemyX--;
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+function canWalkDownEnemy(positionTop) {
+    if (matrizGameBoard[positionEnemyY+1][positionEnemyX] == 0) {
+        if ((((positionTop-8) / 42)+2) == positionEnemyY+1) {
+            positionEnemyY++;
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+function canWalkUpEnemy(positionTop) {
+    if (matrizGameBoard[positionEnemyY-1][positionEnemyX] == 0) {
+        if ((((positionTop-8) / 42)) == positionEnemyY-1) {
+            positionEnemyY--;
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+function positionEnemy(time, position, side, nimg, pixel, pos){
+    if (pos == 'top') {
+        setTimeout(() => {
+            enemy.style.top = `${position + pixel}px`
+            enemy.style.backgroundImage = `url(img/enemies/enemy_${side}_${nimg}.png)`;
+        }, time);
+    } else {
+        setTimeout(() => {
+            enemy.style.left = `${position + pixel}px`
+            enemy.style.backgroundImage = `url(img/enemies/enemy_${side}_${nimg}.png)`;
+        }, time);
+    }
 }
