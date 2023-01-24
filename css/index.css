@@ -20,26 +20,66 @@
 }
 
 main {
-    width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    background-image: linear-gradient(to bottom, blue, rgb(79, 176, 241), blue);
-
+    background-color: #10101a;
 }
 
-.title {
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
+.screen {
+    position: relative;
+    width: 768px;
+    height: 667px;
+    background-image: url(../img/initial-screen/init_01.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    border-radius: 5px;
+    overflow: hidden;
 }
 
-h1 {
-    font-family: Bomberman, sans-serif;
-    font-size: 8rem;
+img {
+    position: absolute;
+}
+
+#logo {
+    left: 50px;
+    top: 0;
+    z-index: 9;
+}
+
+#baloon {
+    left: -137px;
+    top: 150px;
+    z-index: 8;
+
+    animation: baloonMove 20s infinite linear;
+}
+
+#dir-small {
+    left: -100px;
+    top: 400px;
+    z-index: 7;
+    
+    animation: dirSmallMove 12s infinite linear;
+}
+
+#dir-big {
+    right: -230px;
+    top: 0;
+    z-index: 7;
+    
+    animation: dirBigMove 18s infinite linear;
+}
+
+a {
+    font-family: "Archivo", sans-serif;
+    /*font-family: 'Libre Baskerville', serif;*/
+    /*font-family: Bomberman, sans-serif;*/
+    font-size: 42px;
 
     /* Primeiro passo: definir um degradê como fundo */
     background-image: linear-gradient(to bottom, rgb(224, 15, 15), rgb(238, 215, 8), rgb(255, 2, 2));
@@ -56,37 +96,44 @@ h1 {
     /*line-height: 1.1;*/
 
     -webkit-text-stroke: 0.0001px rgb(71, 41, 16);
+    border-radius: 5px;
 
-    padding-right: 8px;
-}
-
-.title-down {
-    text-align: end;
-    background-image: linear-gradient(to bottom, rgb(224, 203, 15), rgb(238, 215, 8), rgb(255, 2, 2));
-}
-
-ul {
-    list-style: none;
-    margin-top: 15px;
-    padding: 10px;
-    z-index: 2;
-}
-
-a {
-    color: #FFF;
-    font-family: "Archivo", sans-serif;
-    font-size: 2rem;
+    position: absolute;
+    left: 332px;
+    top: 450px;
+    z-index: 10;
     cursor: pointer;
 }
 
 a:hover {
-    color: #10101a;
+    background-image: linear-gradient(to bottom, rgb(203, 224, 15), rgb(238, 8, 8), rgb(255, 251, 2));
+
+    /*text-shadow: 0 0 20px rgba(255, 255, 255, 0.726), 0 0 10px rgba(255, 255, 255, 0.651);*/
 }
 
-main img {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100vw;
-    z-index: 1;
+@keyframes baloonMove {
+    from {
+        left: -137px;
+    }
+    to {
+        left: 100%;
+    }
+}
+
+@keyframes dirSmallMove {
+    from {
+        left: -100px;
+    }
+    to {
+        left: 100%;
+    }
+}
+
+@keyframes dirBigMove {
+    from {
+        right: -230px;
+    }
+    to {
+        right: 100%;
+    }
 }

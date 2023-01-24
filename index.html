@@ -1,33 +1,22 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bomberman</title>
 
-    <script defer src="js/script.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <header>
-        <img class="logo" src="img/logo_bomberman.png" alt="Logo">
-
-        <ul class="navbar">
-            <li><a href="index.html">RESTART</a></li>
-        </ul>
-    </header>
     <main>
-        <div class="gameboard">
-            <div class="bomberman"></div>
-            <div class="enemy"></div>
-        </div>
+        <div class="screen">
+            <img id="logo" src="img/initial-screen/init_logo.png" alt="">
+            <img id="baloon" src="img/initial-screen/init_baloon.png" alt="">
+            <img id="dir-small" src="img/initial-screen/init_dir_small.png" alt="">
+            <img id="dir-big" src="img/initial-screen/init_dir_big.png" alt="">
 
-        <div class="modal">
-            <div class="content">
-                <h2></h2>
-                <button class="btn" onclick="restartGame()">Restart</button>
-            </div>
+            <a href="game.html">PLAY</a>
         </div>
     </main>
 </body>
