@@ -19,8 +19,9 @@ const timeStep = 200;
 // Constante para controle do tempo da explosão
 const timeExplosion = 1000;
 
-// Quantidade de paredes quebráveis, altere para criar mais paredes
-var numberOfBkWalls = 32;
+// Controle de paredes quebraveis e inimigos
+var numberOfBkWalls = 2;
+var enemiesAlive = 1;
 
 /* Variaveis modal */
 const modal = document.querySelector('.modal');
@@ -574,10 +575,10 @@ dropBomb = () => {
     
     // Timer para a explosão da bomba
     setTimeout(() => {
-        //console.log('bomba explode')
 
         // Remove as paredes ao lado da bomba e seta o 0 na matriz
         removeWalls(bombY, bombX);
+
         /*if (matrizGameBoard[bombY][bombX+1] == 2) {
             
             let wallRight = document.getElementById(`wall-${bombY}-${bombX+1}`);
@@ -648,12 +649,15 @@ dropBomb = () => {
             }, 3000);
 
         } else {
-            if (numberOfBkWalls == 1) {
-                // Modal informando a morte e reinicio
-                modalText.innerHTML = "You Win!";
-                modalButton.innerHTML = "Play again";
-                modal.style.display = 'block';
-            }
+            // setTimeout usado para dar tempo da explosão eliminar a parede
+            setTimeout(() => {
+                if (numberOfBkWalls == 0 && enemiesAlive == 0) {
+                    // Modal informando a morte e reinicio
+                    modalText.innerHTML = "You Win!";
+                    modalButton.innerHTML = "Play again";
+                    modal.style.display = 'block';
+                }
+            }, timeExplosion);
         }
 
         // Remove a bomba da tela e da matriz
@@ -715,33 +719,9 @@ function restartGame() {
     window.location.reload();
 }
 
+/* INIMIGO */
+
 const enemy = document.querySelector('.enemy');
-
-/*
-while (true) {
-    var positionEnemyLeft = +window.getComputedStyle(enemy).left.replace('px', '');
-    var positionEnemyTop = +window.getComputedStyle(enemy).top.replace('px', '');
-
-    console.log(positionEnemyLeft)
-}*/
-
-/*
-for (let step = 0; step < 10; step++) {
-    var positionEnemyLeft = +window.getComputedStyle(enemy).left.replace('px', '');
-    var positionEnemyTop = +window.getComputedStyle(enemy).top.replace('px', '');
-
-    if (canWalkRight(positionEnemyLeft)) {
-        positionEnemy(30, positionEnemyLeft, 'right', '01', 7, '');
-        positionEnemy(60, positionEnemyLeft, 'right', '01', 14, '');
-        positionEnemy(90, positionEnemyLeft, 'right', '01', 21, '');
-        positionEnemy(120, positionEnemyLeft, 'right', '01', 28, '');
-        positionEnemy(150, positionEnemyLeft, 'right', '01', 35, '');
-        positionEnemy(180, positionEnemyLeft, 'right', '01', 42, '');
-    }
-
-    console.log(step)
-    
-}*/
 
 var going = 'right';
 var movesSide = 0;
@@ -906,12 +886,28 @@ function testBombKillEnemy(bombScreen) {
     var enmL = Number(+window.getComputedStyle(enemy).left.replace('px', ''));
     var enmT = Number(+window.getComputedStyle(enemy).top.replace('px', ''));
 
-    console.log(`Bomb - Left: ${bmbL+42} || Top: ${bmbT-30} `);
-    console.log(`Enemy - Left: ${enmL} || Top: ${enmT} `);
+    //console.log(`Bomb - Left: ${bmbL} || Top: ${bmbT-72} `);
+    //console.log(`Enemy - Left: ${enmL} || Top: ${enmT} `);
+    //console.log(numberOfBkWalls)
 
-    if ((bmbL+42 == enmL) && (bmbT-30 == enmT)) {
-        console.log('Enemy Died!')
+    if ((bmbL+42 == enmL) && (bmbT-30 == enmT) || 
+        (bmbL-42 == enmL) && (bmbT-30 == enmT) ||
+        (bmbL == enmL) && (bmbT+12 == enmT) || 
+        (bmbL == enmL) && (bmbT-72 == enmT)) {
+        
+        // Inimigo morre
+
+        enemy.remove();
+        enemiesAlive--;
+
+        if (numberOfBkWalls == 0 && enemiesAlive == 0) {
+            // Modal informando a vitória e reinicio
+            modalText.innerHTML = "You Win!";
+            modalButton.innerHTML = "Play again";
+            modal.style.display = 'block';
+        }
     }
+    
     
 
 }
