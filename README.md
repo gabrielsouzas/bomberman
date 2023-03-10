@@ -25,6 +25,7 @@ The following technologies/tools were used for the development:
 - [X] Insertion of game images;
 - [X] Animations;
 - [X] Enemies;
+- [ ] Bugs correction;
 - [ ] Score;
 - [ ] More stages;
 - [ ] Clean Code;
